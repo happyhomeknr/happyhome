@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Gallery</title>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    /* Global Styles */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: url('12375.jpg') center/cover no-repeat fixed;
+      color: #333; /* Dark text for contrast */
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      position: relative;
+    }
+  
+    /* Blur Effect using a Pseudo Element */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit; /* Uses the same background */
+  backdrop-filter: blur(8px); /* Adjust blur strength */
+  -webkit-backdrop-filter: blur(8px);
+  z-index: -1; /* Ensures content stays on top */
+}
+
+  header {
+  text-align: center; /* Ensures text inside is centered */
+background: rgba(0, 0, 0, 0.5); /* Light background */
+
+}
+
+
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, white, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: tracking 2s ease-in-out forwards;
+  transition: text-shadow 0.3s ease-in-out;
+
+  display: inline-block; /* Allows smooth animations */
+  text-align: center; /* Centers the text */
+  width: 100%; /* Ensures full width */
+}
+
+/* Hover effect */
+h1:hover {
+ 
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 
+               0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+
+    @keyframes tracking {
+      0% {
+        letter-spacing: 20px;
+        opacity: 0;
+      }
+      100% {
+        letter-spacing: 2px;
+        opacity: 1;
+      }
+    }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-links li {
+    display: inline;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .nav-links a:hover {
+    color: #ff6347;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .nav-links {
+      padding-top: 0.5rem;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+background: rgba(0, 0, 0, 0.5);
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+      gap: 20px;
+      padding: 2rem;
+      margin: 0 1rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      animation: fadeIn 1.5s ease-out 0.5s;
+    }
+
+    /* Gallery Item */
+    .gallery-item {
+      background-color: #fff; /* Light background */
+      height: 300px; /* Set a fixed height for images */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards 1.5s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 
+               0 0 15px rgba(255, 255, 255, 0.5);
+
+
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    /* Overlay on Hover */
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3); /* Slightly dark overlay for better visibility */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      border-radius: 10px;
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay-text {
+      color: #fff;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Contact Section */
+#contact {
+  padding: 4rem 2rem;
+ background: rgba(0, 0, 0, 0.5); /* Light background */
+
+  color: #fff;
+  text-align: center;
+}
+
+.contact-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: ;
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 150px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 
+               0 0 15px rgba(255, 255, 255, 0.5);
+
+}
+
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+    /* Footer */
+    footer {
+      padding: 2rem 1rem;
+      background: white; /* Light background */
+      color: black;
+      text-align: center;
+      border-top: 0px solid #ddd; /* Subtle top border */
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: black;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-contact i {
+      font-size: 1.2rem;
+      color: #ff6347;
+    }
+
+    /* Keyframes for Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes underline {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header>
+  <nav class="navbar">
+        <div class="logo">
+   <span class="text-reveal"></span>
+</div>
+    <ul class="nav-links">
+               </ul>
+  </nav>
+  <h1>Project Gallery</h1>
+</header>
+
+
+  <div class="gallery-grid">
+    <!-- Gallery Item 1 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.05 PM (1).jpeg" alt="Art Image 1">
+      <div class="overlay">
+        <div class="overlay-text">Bedroom</div>
+      </div>
+    </div>
+
+    <!-- Gallery Item 2 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.05 PM.jpeg" alt="Art Image 2">
+      <div class="overlay">
+        <div class="overlay-text">Kitchen</div>
+      </div>
+    </div>
+
+    <!-- Gallery Item 3 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.04 PM (2).jpeg" alt="Art Image 3">
+      <div class="overlay">
+        <div class="overlay-text">Dining</div>
+      </div>
+    </div>
+
+    <!-- Gallery Item 4 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.04 PM (1).jpeg" alt="Art Image 4">
+      <div class="overlay">
+        <div class="overlay-text">Kitchen</div>
+      </div>
+    </div>
+
+    <!-- Gallery Item 5 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.04 PM.jpeg" alt="Art Image 5">
+      <div class="overlay">
+        <div class="overlay-text">Kitchen</div>
+      </div>
+    </div>
+
+    <!-- Gallery Item 6 -->
+    <div class="gallery-item">
+      <img src="WhatsApp Image 2025-01-28 at 12.53.03 PM.jpeg" alt="Art Image 6">
+      <div class="overlay">
+        <div class="overlay-text">Wardrobe</div>
+      </div>
+    </div>
+
+    <!-- More items can be added here -->
+  </div>
+
+ <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-grid">
+      <a href="https://www.instagram.com/happy.home_interiors" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <i class="ri-instagram-line"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/qr/4NOCR4OWH66TK1" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <i class="ri-whatsapp-line"></i>
+        <span>WhatsApp</span>
+      </a>
+      <a href="mailto:happyhomeknr420@gamil.com" class="contact-card">
+        <i class="ri-mail-line"></i>
+        <span>Email</span>
+      </a>
+    </div>
+  </section>
+
+
+   <footer>
+    <div class="footer-content">
+   <div class="footer-logo">
+        <img src="SYMBOL.png" alt="Happy Home Logo" width="40" height="40">
+        <span>Happy Home</span>
+      </div>
+     
+<div class="footer-contact">
+        <i class="ri-phone-line"></i>
+        <span>+91 75588 13779</span>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
